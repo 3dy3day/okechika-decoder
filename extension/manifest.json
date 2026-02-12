@@ -1,0 +1,32 @@
+{
+  "manifest_version": 3,
+  "name": "桶地下デコーダー",
+  "version": "1.1",
+  "description": "暗号文字を対応する文字に置換して表示する",
+  "permissions": ["storage", "activeTab", "scripting", "sidePanel"],
+  "host_permissions": ["<all_urls>"],
+  "action": {
+    "default_icon": {
+      "16": "icon16.png",
+      "48": "icon48.png",
+      "128": "icon128.png"
+    }
+  },
+  "side_panel": {
+    "default_path": "panel.html"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "web_accessible_resources": [
+    {
+      "resources": ["dict.json"],
+      "matches": ["https://www.qtes9gu0k.xyz/*"]
+    }
+  ],
+  "icons": {
+    "16": "icon16.png",
+    "48": "icon48.png",
+    "128": "icon128.png"
+  }
+}

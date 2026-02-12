@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(powershell -Command \"Compress-Archive -Path ''extension\\\\*'' -DestinationPath ''okechika-decoder.zip'' -Force\")",
+      "Bash(powershell -Command:*)"
+    ]
+  }
+}
