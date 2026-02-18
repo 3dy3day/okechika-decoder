@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "桶地下デコーダー",
-  "version": "1.1",
+  "version": "1.2",
   "description": "暗号文字を対応する文字に置換して表示する",
   "permissions": ["storage", "activeTab", "scripting", "sidePanel"],
   "host_permissions": ["<all_urls>"],
