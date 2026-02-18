@@ -14,10 +14,20 @@ const statusEl = document.getElementById('status');
 let defaultDict = {};
 let userDict = {};
 let deletedKeys = [];
+let reverseKeyMap = {};
 
 async function init() {
-  const resp = await fetch(chrome.runtime.getURL('dict.json'));
-  defaultDict = await resp.json();
+  const [dictResp, keyMapResp] = await Promise.all([
+    fetch(chrome.runtime.getURL('dict.json')),
+    fetch(chrome.runtime.getURL('key-map.json')),
+  ]);
+  defaultDict = await dictResp.json();
+  const keyMap = await keyMapResp.json();
+  for (const [letter, kanaMap] of Object.entries(keyMap)) {
+    for (const [kana, kanji] of Object.entries(kanaMap)) {
+      reverseKeyMap[kanji] = letter + '+' + kana;
+    }
+  }
   const data = await chrome.storage.local.get(['userDict', 'deletedKeys']);
   userDict = data.userDict || {};
   deletedKeys = data.deletedKeys || [];
@@ -228,6 +238,24 @@ restoreBtn.addEventListener('click', async () => {
   } catch {
     statusEl.textContent = '対象外のページです';
   }
+});
+
+// Converter
+const converterInput = document.getElementById('converter-input');
+const converterOutput = document.getElementById('converter-output');
+converterInput.addEventListener('input', () => {
+  const text = converterInput.value;
+  if (!text) { converterOutput.innerHTML = ''; return; }
+  const parts = [];
+  for (const ch of text) {
+    if (reverseKeyMap[ch]) {
+      const [letter, kana] = reverseKeyMap[ch].split('+');
+      parts.push(`<span class="key-part">${letter}</span>+<span class="kana-part">${kana}</span>`);
+    } else {
+      parts.push(`<span class="unknown">${ch}</span>`);
+    }
+  }
+  converterOutput.innerHTML = parts.join(' ');
 });
 
 init();

@@ -46,6 +46,14 @@ body { font-family: 'Segoe UI', 'Meiryo', sans-serif; font-size: 13px; color: #3
 .io-actions { padding: 8px 16px; display: flex; gap: 8px; border-bottom: 1px solid #e0e0e0; flex-shrink: 0; }
 .btn-io { flex: 1; padding: 8px; text-align: center; font-size: 12px; font-weight: 600; border: 1px solid #ccc; border-radius: 4px; cursor: pointer; background: #fff; color: #555; }
 .btn-io:hover { background: #f0f0f0; border-color: #aaa; }
+.converter { padding: 10px 16px; border-top: 2px solid #2c5f2d; flex-shrink: 0; background: #f8f8f8; }
+.converter-title { font-size: 13px; font-weight: 600; color: #2c5f2d; margin-bottom: 8px; }
+.converter input { width: 100%; padding: 8px 10px; border: 1px solid #ccc; border-radius: 4px; font-size: 15px; margin-bottom: 6px; }
+.converter input:focus { outline: none; border-color: #2c5f2d; box-shadow: 0 0 0 2px rgba(44,95,45,0.2); }
+.converter-output { font-size: 14px; min-height: 24px; word-break: break-all; padding: 6px 8px; background: #fff; border: 1px solid #e0e0e0; border-radius: 4px; user-select: all; }
+.converter-output .key-part { color: #2c5f2d; font-weight: 600; }
+.converter-output .kana-part { color: #c00; }
+.converter-output .unknown { color: #999; }
 .status { padding: 8px 16px; text-align: center; color: #666; font-size: 12px; background: #fafafa; border-top: 1px solid #e0e0e0; flex-shrink: 0; }
 .support { padding: 6px 16px; text-align: center; flex-shrink: 0; background: #fafafa; border-top: 1px solid #f0f0f0; }
 .support a { color: #aaa; font-size: 10px; text-decoration: none; }
@@ -78,6 +86,11 @@ body { font-family: 'Segoe UI', 'Meiryo', sans-serif; font-size: 13px; color: #3
   <input type="text" id="search-input" placeholder="検索...">
 </div>
 <div class="list" id="list"></div>
+<div class="converter">
+  <div class="converter-title">漢字 → キー変換</div>
+  <input type="text" id="converter-input" placeholder="漢字を入力...">
+  <div class="converter-output" id="converter-output"></div>
+</div>
 <div class="status" id="status"></div>
 <div class="support"><a href="https://buymeacoffee.com/3dy3day" target="_blank">Support</a> <a href="https://x.com/3dy3day" target="_blank">Contact</a></div>
 <script src="panel.js"></script>
